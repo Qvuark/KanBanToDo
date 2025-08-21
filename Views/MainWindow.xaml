@@ -1,0 +1,168 @@
+﻿<Window x:Class="KanbanToDo.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KanbanToDo"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="514" Width="895">
+    
+    <Grid Background="{StaticResource PrimaryBackground}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MinWidth="200" MaxWidth="300"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="3*" MinWidth="600"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Левая панель - Проекты -->
+        <Border Grid.Column="0" Grid.RowSpan="2" 
+                Style="{StaticResource SectionBorder}">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" 
+                            HorizontalAlignment="Stretch">
+                    <TextBlock Text="Проекты" Style="{StaticResource SectionHeader}"/>
+                    <Button Content="+" Margin="10,0,0,0" 
+                            Command="{Binding AddProjectCommand}"
+                            Style="{StaticResource AddButton}"/>
+                </StackPanel>
+
+                <TreeView ItemsSource="{Binding Projects}" 
+                          Style="{StaticResource ProjectsTreeView}">
+                    <TreeView.ItemTemplate>
+                        <HierarchicalDataTemplate ItemsSource="{Binding Tasks}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Name}" 
+                                           Style="{StaticResource ProjectItemText}"/>
+                                <Button Content="+" Margin="5,0,0,0" 
+                                        Command="{Binding AddTaskCommand}"
+                                        Style="{StaticResource SmallAddButton}"
+                                        Visibility="Collapsed"/>
+                            </StackPanel>
+                            <HierarchicalDataTemplate.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Title}" 
+                                               Style="{StaticResource TaskItemText}"/>
+                                </DataTemplate>
+                            </HierarchicalDataTemplate.ItemTemplate>
+                        </HierarchicalDataTemplate>
+                    </TreeView.ItemTemplate>
+
+                    <TreeView.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Добавить проект" 
+                                      Command="{Binding AddProjectCommand}"/>
+                            <MenuItem Header="Удалить проект" 
+                                      Command="{Binding DeleteProjectCommand}"/>
+                        </ContextMenu>
+                    </TreeView.ContextMenu>
+                </TreeView>
+            </DockPanel>
+        </Border>
+
+        <!-- Разделитель -->
+        <GridSplitter Grid.Column="1" Grid.RowSpan="2"
+                      Width="5" HorizontalAlignment="Stretch"
+                      Style="{StaticResource VerticalGridSplitter}"/>
+
+        <!-- Верхняя правая панель - Переключатель представлений -->
+        <Border Grid.Column="2" Grid.Row="0"
+                Style="{StaticResource SectionBorder}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Доска задач" Style="{StaticResource SectionHeader}"/>
+                <ComboBox ItemsSource="{Binding ViewModes}" SelectedItem="{Binding CurrentViewMode}"
+                          Margin="20,0,0,0" Width="120">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+        </Border>
+
+        <!-- Правая панель - Колонки задач -->
+        <Border Grid.Column="2" Grid.Row="1"
+                Style="{StaticResource SectionBorder}">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" 
+                          VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding Columns}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <!-- ОДНА колонка -->
+                            <Border Style="{StaticResource ColumnBorder}">
+                                <DockPanel>
+                                    <!-- Заголовок колонки -->
+                                    <TextBlock Text="{Binding Title}" 
+                                               Style="{StaticResource ColumnHeader}"/>
+
+                                    <!-- Кнопка добавления задачи -->
+                                    <Button Content="+ Новая задача" 
+                                            Command="{Binding AddNewTaskCommand}"
+                                            Style="{StaticResource AddTaskButton}"
+                                            DockPanel.Dock="Bottom"/>
+
+                                    <!-- Список задач внутри колонки -->
+                                    <ItemsControl ItemsSource="{Binding Tasks}" 
+                                                  Style="{StaticResource TasksItemsControl}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <!-- ОДНА задача -->
+                                                <Border Style="{StaticResource TaskBorder}">
+                                                    <Grid>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="*"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                        </Grid.RowDefinitions>
+
+                                                        <!-- Заголовок задачи -->
+                                                        <TextBlock Text="{Binding Title}" 
+                                                                   Style="{StaticResource TaskTitle}"/>
+
+                                                        <!-- Описание задачи -->
+                                                        <TextBlock Text="{Binding Description}" 
+                                                                   Grid.Row="1"
+                                                                   Style="{StaticResource TaskDescription}"/>
+
+                                                        <!-- Кнопки действий -->
+                                                        <StackPanel Orientation="Horizontal" 
+                                                                    HorizontalAlignment="Right"
+                                                                    Grid.Row="2">
+                                                            <Button Content="✏" 
+                                                                    Command="{Binding EditCommand}"
+                                                                    Style="{StaticResource IconButton}"/>
+                                                            <Button Content="❌" 
+                                                                    Command="{Binding DeleteCommand}"
+                                                                    Style="{StaticResource IconButton}"/>
+                                                            <Button Content="➡" 
+                                                                    Command="{Binding MoveRightCommand}"
+                                                                    Style="{StaticResource IconButton}"/>
+                                                            <Button Content="⬅" 
+                                                                    Command="{Binding MoveLeftCommand}"
+                                                                    Style="{StaticResource IconButton}"/>
+                                                        </StackPanel>
+                                                    </Grid>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </DockPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</Window>
