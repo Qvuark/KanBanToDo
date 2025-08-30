@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="KanbanToDo.Views.UserControls.ProjectsTree"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008">
+    <Border Style="{StaticResource SectionBorder}">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                <TextBlock Text="Проекты" Style="{StaticResource SectionHeader}"/>
+                <Button Content="+" Margin="10,0,0,0" 
+                        Command="{Binding AddProjectCommand}"
+                        Style="{StaticResource AddButton}"/>
+            </StackPanel>
+            <TreeView ItemsSource="{Binding Projects}"
+                      Style="{StaticResource ProjectsTreeView}">
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Tasks}">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Tasks}"
+                                       Style="{StaticResource ProjectItemText}"/>
+                            <Button Content="+" 
+                                    Margin="5,0,0,0"
+                                    Command="{Binding AddTaskCommand}"
+                                    Style="{StaticResource SmallAddButton}"
+                                    Visibility="Collapsed"/>
+                        </StackPanel>
+                        <HierarchicalDataTemplate.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}"
+                                           Style="{StaticResource TaskItemText}"/>
+                            </DataTemplate>
+                        </HierarchicalDataTemplate.ItemTemplate>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+                <TreeView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Добавить проект" 
+                                  Command="{Binding AddProjectCommand}"/>
+                        <MenuItem Header="Удалить проект" 
+                                  Command="{Binding DeleteProjectCommand}"
+                                  CommandParameter="{Binding SelectedItem, RelativeSource={RelativeSource AncestorType=TreeView}}"/>
+                    </ContextMenu>
+                </TreeView.ContextMenu>
+            </TreeView>
+        </StackPanel>
+
+    </Border>
+</UserControl>
