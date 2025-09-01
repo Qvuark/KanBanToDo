@@ -8,5 +8,12 @@ namespace KanbanToDo.Models
 {
     class Column
     {
+        public string Name { get; set; }
+        public List<Task> Tasks { get; set; }
+        public Column(string name)
+        {
+            Name = name;
+            Tasks = new List<Task>();
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace KanbanToDo.Models
     {
         public int Id { get; set; }
         public int Name { get; set; }
-        public ObservableCollection<Task> Tasks { get; set; }
-        public Project() => Tasks = new ObservableCollection<Task>();
+        public List<Task> Tasks { get; set; }
+        public Project() => Tasks = new List<Task>();
     }
 }
