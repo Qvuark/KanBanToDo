@@ -1,13 +1,6 @@
+## Основные исключения для .NET
 [Dd]ebug/
-[Dd]ebugPublic/
 [Rr]elease/
-[Rr]eleases/
-x64/
-x86/
-[Ww][Ii][Nn]32/
-[Aa][Rr][Mm]/
-[Aa][Rr][Mm]64/
-bld/
 [Bb]in/
 [Oo]bj/
 *.user
@@ -21,16 +14,79 @@ bld/
 *.dotCover
 *.sln.iml
 
+## Папка настроек Visual Studio
+.vs/
 
+## Файлы проектов
+*.csproj.user
+*.vbproj.user
+*.fsproj.user
 
+## Результаты сборки
+*.log
+*.tlog
+*.lastbuildstate
+*.cachefile
+*.dll
+*.pdb
+*.exe
+*.xml
+*.cache
+*.ilk
+*.meta
+*.manifest
+*.spec
+*.pyc
+*.class
+
+## NuGet
+packages/
+[Nn]u[Gg]et.[Ff]allback/
 *.nupkg
-# NuGet Symbol Packages
 *.snupkg
 nuget.exe
 
+## Базы данных
+*.mdf
+*.ldf
+*.sdf
+*.ndf
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+App_Data/
+
+## Файлы Rider
+.idea/
+*.sln.iml
+
+## Файлы VS Code
+.vscode/
+
+## Другие временные файлы
+[Tt]humbs.db
+[Tt]humbcache.db
 *~
+~$*
+*.tmp
+*.temp
+*.DS_Store
+*.log
+*.bak
+*.orig
+*.cache
+*.patch
 
+## Файлы публикации
+publish/
+out/
 
+## Файлы пакетов
+paket-files/
+
+## Файлы тестирования
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
 *.trx
@@ -60,3 +116,6 @@ docker-compose.yml
 __pycache__/
 *.pyc
 
+## Файлы Node.js (если используете)
+node_modules/
+npm-debug.log
