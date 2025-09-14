@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KanbanToDo.Models.Enums
+namespace KanbanToDo.Models
 {
-    enum TaskStatus
+    public enum TaskStatus
     {
         ToDo,
         InProgress,

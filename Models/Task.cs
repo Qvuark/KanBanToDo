@@ -8,10 +8,20 @@ namespace KanbanToDo.Models
 {
     class Task
     {
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        //public DateTime DueDate { get; set; }
-        public string Status { get; set; } 
+        public int Id { get;}
+        public string Title { get;}
+        public string Description { get;}
+        public DateTime DueDate { get;}
+        public TaskStatus Status { get;}
+        public Priority Priority { get;}
+        public Task(int id, string title, string description, DateTime dueDate, TaskStatus status, Priority priority)
+        {
+            Id = id;
+            Title = title;
+            Description = description;
+            DueDate = dueDate;
+            Status = status;
+            Priority = priority;
+        }
     }
 }
