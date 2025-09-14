@@ -8,6 +8,7 @@ namespace KanbanToDo.Models
 {
     public enum TaskStatus
     {
+        NotStated,
         ToDo,
         InProgress,
         Done

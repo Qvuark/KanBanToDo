@@ -10,8 +10,11 @@ namespace KanbanToDo.Models
     class Project
     {
         public int Id { get; set; }
-        public int Name { get; set; }
-        public List<Task> Tasks { get; set; }
-        public Project() => Tasks = new List<Task>();
+        public required string Name { get; set; }
+        public string? Description { get; set; }
+        public required string Author { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public bool IsActive { get; set; }
+        public required List<Task> Tasks { get; set; }
     }
 }

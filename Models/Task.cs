@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace KanbanToDo.Models
 {
-    class Task
+    public class TaskModel
     {
-        public int Id { get;}
-        public string Title { get;}
-        public string Description { get;}
-        public DateTime DueDate { get;}
-        public TaskStatus Status { get;}
-        public Priority Priority { get;}
-        public Task(int id, string title, string description, DateTime dueDate, TaskStatus status, Priority priority)
+        public int Id { get; set; }
+        public string Title { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public DateTime DueDate { get; set; } = DateTime.Now;
+        public TaskStatus Status { get; set; } = TaskStatus.NotStated;
+        public int ProjectId { get; set; }
+        public Priority Priority { get; set; } = Priority.Low;
+        /*public TaskModel(int id, string title, string description, DateTime dueDate, TaskStatus status, Priority priority)
         {
             Id = id;
             Title = title;
@@ -22,6 +23,6 @@ namespace KanbanToDo.Models
             DueDate = dueDate;
             Status = status;
             Priority = priority;
-        }
+        }*/
     }
 }
