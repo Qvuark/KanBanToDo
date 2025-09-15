@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace KanbanToDo.Services
 {
-    class ProjectMananger
+    public class ProjectMananger
     {
+
     }
 }

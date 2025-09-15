@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KanbanToDo.Models
 {
-    class Project
+    public class Project
     {
         public int Id { get; set; }
         public required string Name { get; set; }

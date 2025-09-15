@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KanbanToDo.Models;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +8,13 @@ using System.Threading.Tasks;
 
 namespace KanbanToDo.Services
 {
-    interface ITaskMananger
+    public interface ITaskMananger
     {
+        Task<IEnumerable<TaskModel>> GetAllTasksAsync();
+        Task<IEnumerable<TaskModel>> GetAllTasksByIdAsync();
+        Task<TaskModel> GetTaskByIdAsync(int taskId);
+        Task<TaskModel> CreateTaskAsync(TaskModel task);
+        Task<TaskModel> UpdateTaskAsync(TaskModel task);
+        Task DeleteTask(TaskModel task);
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KanbanToDo.ViewModels
 {
-    public class KanbanBoardViewModel : MainWindowViewModel
+    public class KanbanBoardViewModel : BaseViewModel
     {
 
     }

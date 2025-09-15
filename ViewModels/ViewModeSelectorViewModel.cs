@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace KanbanToDo.ViewModels
 {
-    public class ViewModeSelectorViewModel : MainWindowViewModel
+    public class ViewModeSelectorViewModel : BaseViewModel
     {
         public ICommand ChangeTypeOfViewCommand { get; }
     }
