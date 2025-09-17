@@ -11,7 +11,7 @@ namespace KanbanToDo.Services
     public interface ITaskMananger
     {
         Task<IEnumerable<TaskModel>> GetAllTasksAsync();
-        Task<IEnumerable<TaskModel>> GetAllTasksByIdAsync();
+        Task<IEnumerable<TaskModel>> GetAllTasksByIdAsync(int id);
         Task<TaskModel> GetTaskByIdAsync(int taskId);
         Task<TaskModel> CreateTaskAsync(TaskModel task);
         Task<TaskModel> UpdateTaskAsync(TaskModel task);

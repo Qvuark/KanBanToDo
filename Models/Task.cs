@@ -11,6 +11,7 @@ namespace KanbanToDo.Models
         public int Id { get; set; }
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
+        public DateTime DateCreated { get; set; } = DateTime.Now;
         public DateTime DueDate { get; set; } = DateTime.Now;
         public TaskStatus Status { get; set; } = TaskStatus.NotStated;
         public int ProjectId { get; set; }
