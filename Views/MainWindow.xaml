@@ -8,12 +8,12 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" MinWidth="150" MaxWidth="300"/>
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="7*" MinWidth="600"/>
+            <ColumnDefinition Width="9*" MinWidth="600"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="5*"/>
+            <RowDefinition Height="7*"/>
         </Grid.RowDefinitions>
 
         <!-- Левая панель - Проекты -->

@@ -7,8 +7,8 @@ using System.Windows.Input;
 
 namespace KanbanToDo.ViewModels
 {
-    public class ProjectsTreeViewModel : MainWindowViewModel
+    public class ProjectsTreeViewModel : BaseViewModel
     {
-        
+        //private readonly I
     }
 }
