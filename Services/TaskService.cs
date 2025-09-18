@@ -8,11 +8,11 @@ using TaskStatus = KanbanToDo.Models.TaskStatus;
 
 namespace KanbanToDo.Services
 {
-    public class TaskManager
+    public class TaskService : ITaskService
     {
         private readonly List<TaskModel> tasks = new List<TaskModel>();
-        private int nextId;
-        public TaskManager() 
+        private int nextId = 3;
+        public TaskService() 
         {
             tasks.AddRange(new[]
             {
@@ -54,6 +54,8 @@ namespace KanbanToDo.Services
         }
         public Task<TaskModel> CreateTaskAsync(TaskModel task)
         {
+            if (task == null) 
+                throw new ArgumentNullException(nameof(task));
             task.Id = ++nextId;
             task.DateCreated = DateTime.Now;
             tasks.Add(task);
@@ -61,6 +63,8 @@ namespace KanbanToDo.Services
         }
         public Task<TaskModel> UpdateTaskAsync(TaskModel task)
         {
+            if (task == null) 
+                throw new ArgumentNullException(nameof(task));
             var existingTask = tasks.FirstOrDefault(t => t.Id == task.Id);
             if (existingTask != null)
             {

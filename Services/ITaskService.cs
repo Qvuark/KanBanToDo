@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace KanbanToDo.Services
 {
-    public interface ITaskMananger
+    public interface ITaskService
     {
         Task<IEnumerable<TaskModel>> GetAllTasksAsync();
         Task<IEnumerable<TaskModel>> GetAllTasksByIdAsync(int id);
         Task<TaskModel> GetTaskByIdAsync(int taskId);
         Task<TaskModel> CreateTaskAsync(TaskModel task);
         Task<TaskModel> UpdateTaskAsync(TaskModel task);
-        Task DeleteTask(TaskModel task);
+        Task DeleteTask(int id);
     }
 }
