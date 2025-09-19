@@ -18,7 +18,7 @@ namespace KanbanToDo.Services
                 Id = 1,
                 Name = "First Project",
                 Author = "Admin",
-                CreatedAt = DateTime.Now,
+                CreateDate = DateTime.Now,
                 Description = "This is the first project",
                 IsActive = true
             });
@@ -27,7 +27,7 @@ namespace KanbanToDo.Services
                 Id = 2,
                 Name = "Second Project",
                 Author = "Admin",
-                CreatedAt = DateTime.Now,
+                CreateDate = DateTime.Now,
                 Description = "This is the second project",
                 IsActive = true
             });
@@ -44,7 +44,7 @@ namespace KanbanToDo.Services
         public Task<Project> CreateProjectAsync(Project project)
         {
             project.Id = ++nextId;
-            project.CreatedAt = DateTime.Now;
+            project.CreateDate = DateTime.Now;
             project.IsActive = true;
             projects.Add(project);
             return Task.FromResult(project);
@@ -60,9 +60,9 @@ namespace KanbanToDo.Services
             }
             return Task.FromResult(existingProject);
         }
-        public Task DeleteProject(Project project)
+        public Task DeleteProject(int id)
         {
-            var existingProject = projects.FirstOrDefault(p => p.Id == project.Id && p.IsActive);
+            var existingProject = projects.FirstOrDefault(p => p.Id == id && p.IsActive);
             if (existingProject != null)
             {
                 existingProject.IsActive = false;

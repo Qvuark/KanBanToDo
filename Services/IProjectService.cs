@@ -15,6 +15,6 @@ namespace KanbanToDo.Services
         Task<Project?> GetProjectByIdAsync(int projectId);
         Task<Project> CreateProjectAsync(Project project);
         Task<Project> UpdateProjectAsync(Project project);
-        Task DeleteProject(Project project);
+        Task DeleteProject(int id);
     }
 }
