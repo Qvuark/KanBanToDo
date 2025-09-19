@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace KanbanToDo.Services
 {
-    public interface IProjectMananger
+    public interface IProjectService
     {
-        Task<IEnumerable<TaskModel>> GetTaskModelsAsync(int projectId);
-        Task<Project> GetProjectByIdAsync(int projectId);
+        Task<IEnumerable<Project>> GetAllProjectsAsync();
+        Task<Project?> GetProjectByIdAsync(int projectId);
         Task<Project> CreateProjectAsync(Project project);
         Task<Project> UpdateProjectAsync(Project project);
         Task DeleteProject(Project project);

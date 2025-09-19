@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace KanbanToDo.Services
 {
-    public class ProjectManager
+    public class ProjectService : IProjectService
     {
         private readonly List<Project> projects = new List<Project>();
         private int nextId;
-        public ProjectManager()
+        public ProjectService()
         {
             projects.Add(new Project
             {
@@ -32,7 +32,7 @@ namespace KanbanToDo.Services
                 IsActive = true
             });
         }
-        public Task<IEnumerable<Project>> GetProjectsAsync()
+        public Task<IEnumerable<Project>> GetAllProjectsAsync()
         {
             return Task.FromResult(projects.Where(p => p.IsActive).AsEnumerable());
         }
@@ -49,7 +49,7 @@ namespace KanbanToDo.Services
             projects.Add(project);
             return Task.FromResult(project);
         }
-        public Task<Project?> UpdateProjectAsync(Project project)
+        public Task<Project> UpdateProjectAsync(Project project)
         {
             var existingProject = projects.FirstOrDefault(p => p.Id == project.Id && p.IsActive);
             if (existingProject != null)

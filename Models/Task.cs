@@ -12,7 +12,7 @@ namespace KanbanToDo.Models
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public DateTime DateCreated { get; set; } = DateTime.Now;
-        public DateTime DueDate { get; set; } = DateTime.Now;
+        public DateTime DueDate { get; set; } = DateTime.Now.AddDays(7);
         public TaskStatus Status { get; set; } = TaskStatus.NotStated;
         public int ProjectId { get; set; }
         public Priority Priority { get; set; } = Priority.Low;
