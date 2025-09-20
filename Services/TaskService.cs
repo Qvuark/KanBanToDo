@@ -35,6 +35,16 @@ namespace KanbanToDo.Services
                     Status = TaskStatus.InProgress,
                     Priority = Priority.High,
                     ProjectId = 1
+                },
+                new TaskModel
+                {
+                    Id = 2,
+                    Title = "Task 2",
+                    Description = "Description for Task 2",
+                    DueDate = DateTime.Now.AddDays(5),
+                    Status = TaskStatus.InProgress,
+                    Priority = Priority.High,
+                    ProjectId = 2
                 }
             });
 

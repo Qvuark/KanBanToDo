@@ -22,6 +22,10 @@ namespace KanbanToDo.Stores
         {
             _taskService = taskService;
         }
+        public async Task<IEnumerable<TaskModel>> GetAllTasksByIdAsync(int id)
+        {
+            return await _taskService.GetAllTasksByIdAsync(id);
+        }
         public async Task<IEnumerable<TaskModel>> GetTaskAsync()
         {
             return await _taskService.GetAllTasksAsync();

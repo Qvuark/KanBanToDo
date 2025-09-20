@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KanbanToDo.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,10 @@ namespace KanbanToDo.Views.UserControls
         public ProjectsTree()
         {
             InitializeComponent();
+            if (App.ServiceProvider != null)
+            {
+                DataContext = App.ServiceProvider.GetRequiredService<ProjectsTreeViewModel>();
+            }
         }
     }
 }
