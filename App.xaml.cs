@@ -56,6 +56,7 @@ namespace KanbanToDo
 
             services.AddTransient<ProjectsTreeViewModel>();
             services.AddTransient<KanbanBoardViewModel>();
+            services.AddTransient<KanbanColumnViewModel>();
             services.AddTransient<MainWindow>();
         }
     }

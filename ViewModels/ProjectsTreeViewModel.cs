@@ -42,7 +42,7 @@ namespace KanbanToDo.ViewModels
                 }
                 _projects.Add(project);
             }
-            OnPropertyChanged(nameof(Projects));
+            //OnPropertyChanged(nameof(Projects));
         }
         public ObservableCollection<Project> Projects
         {

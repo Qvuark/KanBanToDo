@@ -12,7 +12,6 @@ namespace KanbanToDo.Stores
     {
 
         private readonly IProjectService _projectsService;
-        private List<Project> _projects = new();
 
         public event Action? ProjectsChanged;
         public event Action<Project>? ProjectCreated;
@@ -22,7 +21,6 @@ namespace KanbanToDo.Stores
         {
             _projectsService = projectsService;
         }
-        public IReadOnlyList<Project> Projects => _projects;
         public async Task<IEnumerable<Project>> GetProjectsAsync()
         {
             return await _projectsService.GetAllProjectsAsync();

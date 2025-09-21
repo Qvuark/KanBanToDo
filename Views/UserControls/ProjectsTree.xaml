@@ -43,6 +43,7 @@
                     </ContextMenu>
                 </TreeView.ContextMenu>
             </TreeView>
+            <Image Source="C:\Users\roma1\Downloads\изображение_2025-09-20_231054572.png"/>
         </StackPanel>
 
     </Border>

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TaskStatus = KanbanToDo.Models.TaskStatus;
 
 namespace KanbanToDo.Services
 {
@@ -19,30 +18,40 @@ namespace KanbanToDo.Services
                 new TaskModel
                 {
                     Id = 1,
-                    Title = "Task 1",
-                    Description = "Description for Task 1",
+                    Title = "Глеб лох",
+                    Description = "Поздеваться над ним",
                     DueDate = DateTime.Now.AddDays(3),
-                    Status = TaskStatus.NotStated,
+                    Status = Models.TaskStatus.ToDo,
                     Priority = Priority.Medium,
                     ProjectId = 1
                 },
                 new TaskModel
                 {
+                    Id = 1,
+                    Title = "КУпить энергос",
+                    Description = "та надо бы бля",
+                    DueDate = DateTime.Now.AddDays(3),
+                    Status = Models.TaskStatus.Done,
+                    Priority = Priority.Medium,
+                    ProjectId = 3
+                },
+                new TaskModel
+                {
                     Id = 2,
-                    Title = "Task 2",
-                    Description = "Description for Task 2",
+                    Title = "чето там",
+                    Description = "та похуй бля",
                     DueDate = DateTime.Now.AddDays(5),
-                    Status = TaskStatus.InProgress,
+                    Status = Models.TaskStatus.InProgress,
                     Priority = Priority.High,
                     ProjectId = 1
                 },
                 new TaskModel
                 {
                     Id = 2,
-                    Title = "Task 2",
-                    Description = "Description for Task 2",
+                    Title = "послушать земфиру",
+                    Description = "прости меня моя любовь",
                     DueDate = DateTime.Now.AddDays(5),
-                    Status = TaskStatus.InProgress,
+                    Status = Models.TaskStatus.InProgress,
                     Priority = Priority.High,
                     ProjectId = 2
                 }

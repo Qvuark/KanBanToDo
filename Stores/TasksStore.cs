@@ -11,13 +11,11 @@ namespace KanbanToDo.Stores
     public class TasksStore
     {
         private readonly ITaskService _taskService;
-        private List<TaskModel> _tasks = new();
 
         public event Action? TaskChanged;
         public event Action<TaskModel>? TaskCreated;
         public event Action<TaskModel>? TaskUpdated;
         public event Action<int>? TaskDeleted;
-        public IReadOnlyList<TaskModel> Tasks => _tasks;
         public TasksStore(ITaskService taskService)
         {
             _taskService = taskService;
@@ -26,7 +24,7 @@ namespace KanbanToDo.Stores
         {
             return await _taskService.GetAllTasksByIdAsync(id);
         }
-        public async Task<IEnumerable<TaskModel>> GetTaskAsync()
+        public async Task<IEnumerable<TaskModel>> GetAllTasksAsync()
         {
             return await _taskService.GetAllTasksAsync();
         }
