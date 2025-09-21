@@ -1,5 +1,6 @@
 ﻿using KanbanToDo.Models;
 using KanbanToDo.Services;
+using KanbanToDo.Stores;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,18 +13,47 @@ namespace KanbanToDo.ViewModels
 {
     public class ProjectsTreeViewModel : BaseViewModel
     {
-        private readonly ITaskService _taskService;
-        private readonly IProjectService _projectService;
-        private ObservableCollection<Project> _projects;
-        private Project _selectedProject;
+        private readonly TasksStore _taskStore;
+        private readonly ProjectsStore _projectStore;
+        private ObservableCollection<Project> _projects = new();
+        private Project? _selectedProject;
 
-        private ProjectsTreeViewModel(IProjectService projectService, ITaskService taskService)
+        public ProjectsTreeViewModel(ProjectsStore projectStore, TasksStore taskStore)
         {
-            _taskService = taskService;
-            _projectService = projectService;
+            _taskStore = taskStore;
+            _projectStore = projectStore;
 
-            AddProject
+            _projectStore.ProjectsChanged += LoadProjectsAsync;
+            _taskStore.TaskChanged += LoadProjectsAsync;
+            LoadProjectsAsync();
+
         }
-        public ObservableCollection
+        public async void LoadProjectsAsync()
+        {
+            var projects = await _projectStore.GetProjectsAsync();
+            _projects.Clear();
+            foreach (var project in projects)
+            {
+                var tasks = await _taskStore.GetAllTasksByIdAsync(project.Id);
+                project.Tasks.Clear();
+                foreach(var task in tasks)
+                {
+                    project.Tasks.Add(task);
+                }
+                _projects.Add(project);
+            }
+            //OnPropertyChanged(nameof(Projects));
+        }
+        public ObservableCollection<Project> Projects
+        {
+            get => _projects;
+            set => SetProperty(ref _projects, value);
+        }
+        public Project? SelectedProject
+        {
+            get => _selectedProject;
+            set => SetProperty(ref _selectedProject, value);
+        }
+
     }
 }

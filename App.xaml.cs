@@ -1,6 +1,7 @@
 ﻿using KanbanToDo.Services;
 using KanbanToDo.ViewModels;
 using KanbanToDo.Views;
+using KanbanToDo.Stores;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Configuration;
@@ -50,8 +51,12 @@ namespace KanbanToDo
             services.AddSingleton<ITaskService, TaskService>();    
             services.AddSingleton<IProjectService, ProjectService>();
 
+            services.AddSingleton<ProjectsStore>();
+            services.AddSingleton<TasksStore>();
+
             services.AddTransient<ProjectsTreeViewModel>();
             services.AddTransient<KanbanBoardViewModel>();
+            services.AddTransient<KanbanColumnViewModel>();
             services.AddTransient<MainWindow>();
         }
     }

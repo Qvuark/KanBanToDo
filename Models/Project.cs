@@ -13,9 +13,8 @@ namespace KanbanToDo.Models
         public required string Name { get; set; }
         public string? Description { get; set; }
         public required string Author { get; set; }
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreateDate { get; set; }
         public bool IsActive { get; set; } = true;
         public List<TaskModel> Tasks { get; set; } = new();
-        //public required List<Task> Tasks { get; set; }
     }
 }
